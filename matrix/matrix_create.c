@@ -1,19 +1,19 @@
-#include <libmatrix.h>
+#include <matrix.h>
+#include <stdlib.h>
 
-t_matrix	*matrix_create(size_t i, size_t j)
+t_matrix*	matrix_create(size_t i, size_t j)
 {
-	t_matrix *res;
+	t_matrix *const res = (t_matrix*)malloc(sizeof(t_matrix));
 
-	if (!i || !j)
+	if (!res || !(res->mat = (float**)malloc(sizeof(float*) * i)))
 		return (0);
-	CHECK((res = (t_matrix*)malloc(sizeof(t_matrix))));
 	res->i = i;
 	res->j = j;
-	res->mat = (float**)malloc(sizeof(float*) * i);
 	i = 0;
 	while (i < res->i)
 	{
-		res->mat[i] = (float*)malloc(sizeof(float) * j);
+		if (!(res->mat[i] = (float*)malloc(sizeof(float) * j)))
+			return (0);
 		j = 0;
 		while (j < res->j)
 		{

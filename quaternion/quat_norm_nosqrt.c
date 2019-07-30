@@ -1,6 +1,6 @@
-#include <libmatrix.h>
+#include <quaternion.h>
 
-float	quat_norm_nosqrt(t_vector *quaternion)
+float	quat_norm_nosqrt(t_vector *const quaternion)
 {
 	return(quaternion->w * quaternion->w +
 			quaternion->x * quaternion->x +

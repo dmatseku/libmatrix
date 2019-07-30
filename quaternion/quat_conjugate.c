@@ -1,12 +1,9 @@
-#include <libmatrix.h>
+#include <quaternion.h>
 
-void	quat_conjugate(t_vector *quaternion)
+void	quat_conjugate(t_vector *const quaternion)
 {
-	if (quaternion)
-	{
-		quaternion->x = -quaternion->x;
-		quaternion->y = -quaternion->y;
-		quaternion->z = -quaternion->z;
-	}
+	quaternion->x = -quaternion->x;
+	quaternion->y = -quaternion->y;
+	quaternion->z = -quaternion->z;
 }
 

@@ -1,18 +1,23 @@
-#include <libmatrix.h>
+#include <matrix.h>
 
-t_matrix	*matrix_cpy(t_matrix *m)
+t_matrix*	matrix_cpy(t_matrix *const matrix)
 {
-	t_matrix	*res;
-	size_t i;
+	t_matrix *const	res = matrix_create(matrix->i, matrix->j);
+	size_t			i;
+	size_t			j;
 
-
-	if (!m)
+	if (!res)
 		return (0);
-	CHECK((res = matrix_create(m->i, m->j)));
 	i = 0;
-	while (i < m->i)
+	while (i < matrix->i)
 	{
-	    memcpy(res->mat[i], m->mat[i], sizeof(float) * m->j);
+		j = 0;
+		while (j < matrix->j)
+		{
+			res->mat[i][j] = matrix->mat[i][j];
+			j++;
+		}
+		i++;
 	}
 	return (res);
 }

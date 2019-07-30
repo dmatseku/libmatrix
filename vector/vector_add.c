@@ -1,11 +1,8 @@
-#include <libmatrix.h>
+#include <vector.h>
 
-int 	vector_add(t_vector *v1, t_vector *v2)
+void 	vector_add(t_vector *const vector_1, t_vector *const vector_2)
 {
-	if (!v1 || !v2)
-		return (0);
-	v1->x += v2->x;
-	v1->y += v2->y;
-	v1->z += v2->z;
-	return (1);
+	vector_1->x += vector_2->x;
+	vector_1->y += vector_2->y;
+	vector_1->z += vector_2->z;
 }

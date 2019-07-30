@@ -1,29 +1,21 @@
-#include <libmatrix.h>
+#include <matrix.h>
 
-t_matrix	*matrix_sub_new(t_matrix *m1, t_matrix *m2, int freem)
+t_matrix*	matrix_sub_new(t_matrix *const matrix_1, t_matrix *const matrix_2)
 {
-	size_t i;
-	size_t j;
-	t_matrix *res;
+	size_t			i;
+	size_t			j;
+	t_matrix *const	res = matrix_create(matrix_1->i, matrix_1->j);
 
-	if (!m1 || !m2 || m1->i != m2->i || m1->j != m2->j)
-		return (0);
-	CHECK((res = matrix_create(m1->i, m1->j)));
 	i = 0;
-	while (i < m1->i)
+	while (i < matrix_1->i)
 	{
 		j = 0;
-		while (j < m1->j)
+		while (j < matrix_1->j)
 		{
-			res->mat[i][j] = m1->mat[i][j] - m2->mat[i][j];
+			res->mat[i][j] = matrix_1->mat[i][j] - matrix_2->mat[i][j];
 			j++;
 		}
 		i++;
-	}
-	if (freem)
-	{
-		matrix_free(m1);
-		matrix_free(m2);
 	}
 	return (res);
 }

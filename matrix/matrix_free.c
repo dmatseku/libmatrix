@@ -1,11 +1,10 @@
-#include <libmatrix.h>
+#include <matrix.h>
+#include <stdlib.h>
 
-void	matrix_free(t_matrix *m)
+void	matrix_free(t_matrix *const matrix)
 {
-	if (!m)
-		return ;
-	while (m->i--)
-		FREE(m->mat[m->i]);
-	FREE(m->mat);
-	FREE(m);
+	while (matrix->i--)
+		free(matrix->mat[matrix->i]);
+	free(matrix->mat);
+	free(matrix);
 }

@@ -1,23 +1,20 @@
-#include <libmatrix.h>
+#include <matrix.h>
 
-int			matrix_subscalar(t_matrix *m, float scalar)
+void		matrix_subscalar(t_matrix *const matrix, const float scalar)
 {
 	size_t i;
 	size_t j;
 
-	if (!m)
-		return (0);
 	i = 0;
-	while (i < m->i)
+	while (i < matrix->i)
 	{
 		j = 0;
-		while (j < m->j)
+		while (j < matrix->j)
 		{
-			m->mat[i][j] -= scalar;
+			matrix->mat[i][j] -= scalar;
 			j++;
 		}
 		i++;
 	}
-	return (1);
 }
 

@@ -1,10 +1,13 @@
-#include<libmatrix.h>
+#include <operations_matrix.h>
+#include <matrix.h>
 
-t_matrix	*m_orthographic(float left, float right, float bottom, float top, float near, float far)
+t_matrix*	m_orthographic(const float left, const float right, const float bottom,
+							const float top, const float near, const float far)
 {
-	t_matrix *res;
+	t_matrix *const restrict res = matrix_create(4, 4);
 
-	CHECK((res = matrix_create(4, 4)));
+	if (!res)
+		return (0);
 	res->mat[0][0] = 2.0f / (right - left);
 	res->mat[1][1] = 2.0f / (top - bottom);
 	res->mat[2][2] = -2.0f / (far - near);

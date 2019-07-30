@@ -1,11 +1,8 @@
-#include <libmatrix.h>
+#include <vector.h>
 
-int		vector_addscalar(t_vector *v, float scalar)
+void		vector_addscalar(t_vector *const vector, const float scalar)
 {
-	if (!v)
-		return (0);
-	v->x += scalar;
-	v->y += scalar;
-	v->z += scalar;
-	return (1);
+	vector->x += scalar;
+	vector->y += scalar;
+	vector->z += scalar;
 }

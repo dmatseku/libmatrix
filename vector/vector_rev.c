@@ -1,11 +1,8 @@
-#include <libmatrix.h>
+#include <vector.h>
 
-int 	vector_rev(t_vector *v)
+void	vector_rev(t_vector *const vector)
 {
-	if (!v)
-		return (0);
-	v->x = -v->x;
-	v->y = -v->y;
-	v->z = -v->z;
-	return (1);
+	vector->x = -vector->x;
+	vector->y = -vector->y;
+	vector->z = -vector->z;
 }

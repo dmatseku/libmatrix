@@ -1,10 +1,7 @@
-#include <libmatrix.h>
+#include <quaternion.h>
+#include <vector.h>
 
-t_vector	*quat_reverse(t_vector *quaternion)
+void	quat_reverse(t_vector *const quaternion)
 {
-	t_vector	*res;
-
-	CHECK((res = quat_conjugate_new(quaternion, 0)));
-	vector_divscalar(res, quat_norm_nosqrt(quaternion));
-	return (res);
+	vector_divscalar(quaternion, quat_norm_nosqrt(quaternion));
 }

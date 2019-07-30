@@ -1,19 +1,21 @@
-#include <libmatrix.h>
+#include <matrix.h>
+#include <stdlib.h>
 
-float	*matrix_to_array(t_matrix *m)
+float*	matrix_to_array(t_matrix *const matrix)
 {
-	float *res;
-	size_t i;
-	size_t j;
+	float *const	res = (float*)malloc(sizeof(float) * matrix->i * matrix->j);
+	size_t			i;
+	size_t			j;
 
-	CHECK((res = (float*)malloc(sizeof(float) * m->i * m->j)));
+	if (!res)
+		return (0);
 	i = 0;
-	while (i < m->i)
+	while (i < matrix->i)
 	{
 		j = 0;
-		while (j < m->j)
+		while (j < matrix->j)
 		{
-			res[i * m->i + j] = m->mat[i][j];
+			res[i * matrix->i + j] = matrix->mat[i][j];
 			j++;
 		}
 		i++;

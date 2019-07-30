@@ -1,6 +1,7 @@
-#include <libmatrix.h>
+#include <quaternion.h>
+#include <math.h>
 
-float	quat_norm(t_vector *quaternion)
+float	quat_norm(t_vector *const quaternion)
 {
 	return(sqrtf(quaternion->w * quaternion->w +
 			quaternion->x * quaternion->x +

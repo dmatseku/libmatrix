@@ -1,10 +1,11 @@
-#include <libmatrix.h>
+#include <vector.h>
 
-t_vector	*vector_create(float x, float y, float z, float w)
+t_vector*	vector_create(const float x, const float y, const float z, const float w)
 {
-	t_vector	*res;
+	t_vector *const	res = (t_vector*)malloc(sizeof(t_vector));
 
-	CHECK((res = (t_vector*)malloc(sizeof(t_vector))));
+	if (!res)
+		return (0);
 	res->x = x;
 	res->y = y;
 	res->z = z;

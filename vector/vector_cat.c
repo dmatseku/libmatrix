@@ -1,9 +1,9 @@
-#include <libmatrix.h>
+#include <vector.h>
 
-int		vector_cat(t_vector *v1, t_vector *v2)
+void	vector_cat(t_vector *const vector_1, t_vector *const vector_2)
 {
-	if (!v1 || !v2)
-		return (0);
-	memcpy(v1, v2, sizeof(t_vector));
-	return (1);
+	vector_1->x = vector_2->x;
+	vector_1->y = vector_2->y;
+	vector_1->z = vector_2->z;
+	vector_1->w = vector_2->w;
 }

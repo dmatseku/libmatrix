@@ -1,0 +1,34 @@
+#include <operations_matrix.h>
+#include <matrix.h>
+#include <math.h>
+#include <vector_var.h>
+
+t_matrix*	m_yawpitchroll_new(const float yaw, const float pitch, const float roll)
+{
+	t_matrix *const restrict	res = matrix_create(4, 4);
+	const float					ycos = cosf(yaw * 0.5f);
+	const float					ysin = sinf(yaw * 0.5f);
+	const float					pcos = cosf(pitch * 0.5f);
+	const float					psin = sinf(pitch * 0.5f);
+	const float					rcos = cosf(roll * 0.5f);
+	const float					rsin = sinf(roll * 0.5f);
+	const t_vector				vector = vector_var_create(
+			ycos * pcos * rsin - ysin * psin * rcos,
+			ysin * pcos * rsin + ycos * psin * rcos,
+			ysin * pcos * rcos - ycos * psin * rsin,
+			ycos * pcos * rcos + ysin * psin * rsin
+	);
+
+	if (!res)
+		return (0);
+	res->mat[0][0] = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
+	res->mat[0][1] = 2 * (vector.x * vector.y - vector.w * vector.z);
+	res->mat[0][2] = 2 * (vector.w * vector.y + vector.x * vector.z);
+	res->mat[1][0] = 2 * (vector.x * vector.y + vector.w * vector.z);
+	res->mat[1][1] = 1 - 2 * (vector.x * vector.x + vector.z * vector.z);
+	res->mat[1][2] = 2 * (vector.y * vector.z - vector.w * vector.x);
+	res->mat[2][0] = 2 * (vector.x * vector.z - vector.w * vector.y);
+	res->mat[2][1] = 2 * (vector.w * vector.x + vector.y * vector.z);
+	res->mat[2][2] = 1 - 2 * (vector.x * vector.x + vector.y * vector.y);
+	return (res);
+}
