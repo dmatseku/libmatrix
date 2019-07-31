@@ -1,6 +1,6 @@
 #include <matrix.h>
 
-void		matrix_multscalar(t_matrix *const matrix, const float scalar)
+void		matrix_multscalar(t_matrix *const restrict matrix, const float scalar)
 {
 	size_t i;
 	size_t j;

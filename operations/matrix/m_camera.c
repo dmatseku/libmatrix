@@ -11,7 +11,7 @@ t_matrix*	m_camera(const t_vector pos, const t_vector target, const t_vector up)
 	const t_vector				cup = vector_var_vmult(camdir, cright);
 	t_matrix *const restrict	matrix_1 = matrix_create(4, 4);
 	t_matrix *const restrict	matrix_2 = matrix_create(4, 4);
-	t_matrix*					res;
+	t_matrix *restrict			res;
 
 	if (!matrix_1 || !matrix_2)
 		return (0);

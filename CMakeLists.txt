@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 99)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Ofast")
 
-include_directories(includes vector vector/vector_variable matrix  quaternion quaternion/quaternion_variable operations/matrix_vector  operations/matrix)
+include_directories(includes)
 
 set(HEADER vector_var.h libmatrix.h vector.h matrix.h structs.h  quaternion.h quaternion_var.h operations_matrix_vector.h operations_matrix.h)
 

@@ -1,8 +1,8 @@
 #include <vector.h>
 
-float*	vector_to_array(t_vector *const vector)
+float*	vector_to_array(t_vector *const restrict vector)
 {
-	float *const res = (float*)malloc(sizeof(float) * 4);
+	float *const restrict res = (float*)malloc(sizeof(float) * 4);
 
 	if (!res)
 		return (0);

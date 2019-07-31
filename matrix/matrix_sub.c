@@ -1,6 +1,6 @@
 #include <matrix.h>
 
-void	matrix_sub(t_matrix *const matrix_1, t_matrix *const matrix_2)
+void	matrix_sub(t_matrix *const restrict matrix_1, t_matrix *const restrict matrix_2)
 {
 	size_t i;
 	size_t j;

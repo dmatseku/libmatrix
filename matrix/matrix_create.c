@@ -3,7 +3,7 @@
 
 t_matrix*	matrix_create(size_t i, size_t j)
 {
-	t_matrix *const res = (t_matrix*)malloc(sizeof(t_matrix));
+	t_matrix *const restrict res = (t_matrix*)malloc(sizeof(t_matrix));
 
 	if (!res || !(res->mat = (float**)malloc(sizeof(float*) * i)))
 		return (0);

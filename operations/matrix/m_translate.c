@@ -3,7 +3,7 @@
 
 t_matrix*	m_translate(t_matrix *const restrict matrix, const t_vector translate)
 {
-	t_matrix*					res;
+	t_matrix *restrict			res;
 	t_matrix *const restrict	tmp = matrix_create(4, 4);
 
 	if (!tmp)

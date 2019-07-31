@@ -2,7 +2,7 @@
 
 t_vector*	vector_create(const float x, const float y, const float z, const float w)
 {
-	t_vector *const	res = (t_vector*)malloc(sizeof(t_vector));
+	t_vector *const restrict	res = (t_vector*)malloc(sizeof(t_vector));
 
 	if (!res)
 		return (0);

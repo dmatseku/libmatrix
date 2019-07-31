@@ -1,6 +1,6 @@
 #include <vector.h>
 
-t_vector*	vector_normal(t_vector *const vector)
+t_vector*	vector_normal(t_vector *const restrict vector)
 {
 	const float		m = sqrtf(vector->x * vector->x +
 								vector->y * vector->y +

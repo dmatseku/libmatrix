@@ -1,10 +1,10 @@
 #include <matrix.h>
 
-t_matrix*	matrix_cpy(t_matrix *const matrix)
+t_matrix*	matrix_cpy(t_matrix *const restrict matrix)
 {
-	t_matrix *const	res = matrix_create(matrix->i, matrix->j);
-	size_t			i;
-	size_t			j;
+	t_matrix *const restrict	res = matrix_create(matrix->i, matrix->j);
+	size_t						i;
+	size_t						j;
 
 	if (!res)
 		return (0);

@@ -7,7 +7,7 @@ t_matrix*	m_yawpitchroll(t_matrix *const restrict matrix, const float yaw,
 											const float pitch, const float roll)
 {
 	t_matrix *const restrict	tmp = matrix_create(4, 4);
-	t_matrix*					res;
+	t_matrix *restrict			res;
 	const float					ycos = cosf(yaw * 0.5f);
 	const float					ysin = sinf(yaw * 0.5f);
 	const float					pcos = cosf(pitch * 0.5f);

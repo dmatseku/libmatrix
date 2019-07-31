@@ -1,11 +1,11 @@
 #include <matrix.h>
 #include <stdlib.h>
 
-float*	matrix_to_array(t_matrix *const matrix)
+float*	matrix_to_array(t_matrix *const restrict matrix)
 {
-	float *const	res = (float*)malloc(sizeof(float) * matrix->i * matrix->j);
-	size_t			i;
-	size_t			j;
+	float *const restrict	res = (float*)malloc(sizeof(float) * matrix->i * matrix->j);
+	size_t					i;
+	size_t					j;
 
 	if (!res)
 		return (0);
