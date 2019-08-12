@@ -7,9 +7,9 @@ t_matrix*	m_translate_new(const t_vector translate)
 
 	if (!res)
 		return (0);
-	res->mat[0][3] = translate.x;
-	res->mat[1][3] = translate.y;
-	res->mat[2][3] = translate.z;
+	res->mat[3][0] = translate.x;
+	res->mat[3][1] = translate.y;
+	res->mat[3][2] = translate.z;
 	return (res);
 }
 
