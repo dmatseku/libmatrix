@@ -2,7 +2,7 @@
 # define QUATERNION_H
 
 
-# include <structs.h>
+# include <libmatrix_structs.h>
 
 
 void		quat_conjugate(t_vector* quaternion);

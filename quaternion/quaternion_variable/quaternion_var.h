@@ -1,7 +1,7 @@
 #ifndef QUATERNION_VAR_H
 # define QUATERNION_VAR_H
 
-# include <structs.h>
+# include <libmatrix_structs.h>
 
 t_vector	quat_var_conjugate(t_vector quaternion);
 

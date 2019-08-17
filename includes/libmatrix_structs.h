@@ -1,5 +1,5 @@
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef LIBMATRIX_STRUCTS_H
+#define LIBMATRIX_STRUCTS_H
 
 # include <stdio.h>
 

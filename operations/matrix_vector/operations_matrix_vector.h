@@ -1,7 +1,7 @@
 #ifndef MATRIX_VECTOR_H
 # define MATRIX_VECTOR_H
 
-# include <structs.h>
+# include <libmatrix_structs.h>
 
 
 void		mv_mult(t_vector* vector, t_matrix* matrix);

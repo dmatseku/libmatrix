@@ -45,4 +45,4 @@ add_library(matrix STATIC
         operations/matrix/m_orthographic.c  operations/matrix/m_perspective.c
         operations/matrix/m_camera.c        operations/matrix/m_yawpitchroll.c
         operations/matrix/m_rotate_new.c    operations/matrix/m_scale_new.c
-        operations/matrix/m_translate_new.c)
+        operations/matrix/m_translate_new.c includes/libmatrix_structs.h)

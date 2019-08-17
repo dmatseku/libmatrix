@@ -4,7 +4,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <string.h>
-# include <structs.h>
+# include <libmatrix_structs.h>
 
 
 void		vector_add(t_vector* vector_1, t_vector* vector_2);

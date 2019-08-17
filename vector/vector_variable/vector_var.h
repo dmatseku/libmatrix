@@ -6,7 +6,7 @@
 # define vec2(x, y) (t_vector){x, y, 1.0f, 1.0f}
 
 # include <math.h>
-# include <structs.h>
+# include <libmatrix_structs.h>
 
 
 t_vector	vector_var_create(float x, float y, float z, float w);
