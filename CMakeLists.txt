@@ -14,7 +14,7 @@ add_library(matrix STATIC
         matrix/matrix_cat.c 		matrix/matrix_cpy.c			matrix/matrix_create.c
         matrix/matrix_free.c		matrix/matrix_mult.c		matrix/matrix_multscalar.c
         matrix/matrix_print.c 		matrix/matrix_sub.c			matrix/matrix_sub_new.c
-        matrix/matrix_subscalar.c	matrix/matrix_to_array.c
+        matrix/matrix_subscalar.c
 
         vector/vector_add.c			vector/vector_add_new.c		vector/vector_addscalar.c
         vector/vector_cat.c			vector/vector_cpy.c			vector/vector_create.c

@@ -7,8 +7,8 @@ t_matrix*	m_scale_new(const t_vector scale)
 
 	if (!res)
 		return (0);
-	res->mat[0][0] = scale.x;
-	res->mat[1][1] = scale.y;
-	res->mat[2][2] = scale.z;
+	res->mat[0] = scale.x;
+	res->mat[5] = scale.y;
+	res->mat[10] = scale.z;
 	return (res);
 }

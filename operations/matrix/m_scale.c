@@ -8,9 +8,9 @@ t_matrix*	m_scale(t_matrix *const restrict matrix, const t_vector scale)
 
 	if (!tmp)
 		return (0);
-	tmp->mat[0][0] = scale.x;
-	tmp->mat[1][1] = scale.y;
-	tmp->mat[2][2] = scale.z;
+	tmp->mat[0] = scale.x;
+	tmp->mat[5] = scale.y;
+	tmp->mat[10] = scale.z;
 	res = matrix_mult(matrix, tmp);
 	matrix_free(tmp);
 	matrix_free(matrix);

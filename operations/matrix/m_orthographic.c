@@ -8,11 +8,11 @@ t_matrix*	m_orthographic(const float left, const float right, const float bottom
 
 	if (!res)
 		return (0);
-	res->mat[0][0] = 2.0f / (right - left);
-	res->mat[1][1] = 2.0f / (top - bottom);
-	res->mat[2][2] = -2.0f / (far - near);
-	res->mat[0][3] = -((right + left) / (right - left));
-	res->mat[1][3] = -((top + bottom) / (top - bottom));
-	res->mat[2][3] = -((far + near) / (far - near));
+	res->mat[0] = 2.0f / (right - left);
+	res->mat[5] = 2.0f / (top - bottom);
+	res->mat[10] = -2.0f / (far - near);
+	res->mat[3] = -((right + left) / (right - left));
+	res->mat[7] = -((top + bottom) / (top - bottom));
+	res->mat[11] = -((far + near) / (far - near));
 	return (res);
 }

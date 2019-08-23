@@ -13,13 +13,13 @@ t_matrix*	m_perspective(const float fov, const float ar,
 
 	if (!res)
 		return (0);
-	res->mat[0][0] = 2.0f * near / (right - left);
-	res->mat[1][1] = 2.0f * near / (top - bottom);
-	res->mat[2][2] = (-(far + near)) / (far - near);
-	res->mat[0][2] = (right + left) / (right - left);
-	res->mat[1][2] = (top + bottom) / (top - bottom);
-	res->mat[2][3] = -2.0f * far * near / (far - near);
-	res->mat[3][3] = 0.0f;
-	res->mat[3][2] = -1.0f;
+	res->mat[0] = 2.0f * near / (right - left);
+	res->mat[5] = 2.0f * near / (top - bottom);
+	res->mat[10] = (-(far + near)) / (far - near);
+	res->mat[2] = (right + left) / (right - left);
+	res->mat[6] = (top + bottom) / (top - bottom);
+	res->mat[1] = -2.0f * far * near / (far - near);
+	res->mat[15] = 0.0f;
+	res->mat[14] = -1.0f;
 	return (res);
 }

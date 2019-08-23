@@ -2,18 +2,13 @@
 
 void		matrix_addscalar(t_matrix *const restrict matrix, const float scalar)
 {
-	size_t i;
-	size_t j;
+	size_t			i;
+	const size_t	size = matrix->j * matrix->i;
 
 	i = 0;
-	while (i < matrix->i)
+	while (i < size)
 	{
-		j = 0;
-		while (j < matrix->j)
-		{
-			matrix->mat[i][j] += scalar;
-			j++;
-		}
+		matrix->mat[i] += scalar;
 		i++;
 	}
 }

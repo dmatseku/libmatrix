@@ -23,15 +23,15 @@ t_matrix*	m_yawpitchroll(t_matrix *const restrict matrix, const float yaw,
 
 	if (!tmp)
 		return (0);
-	tmp->mat[0][0] = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
-	tmp->mat[0][1] = 2 * (vector.x * vector.y - vector.w * vector.z);
-	tmp->mat[0][2] = 2 * (vector.w * vector.y + vector.x * vector.z);
-	tmp->mat[1][0] = 2 * (vector.x * vector.y + vector.w * vector.z);
-	tmp->mat[1][1] = 1 - 2 * (vector.x * vector.x + vector.z * vector.z);
-	tmp->mat[1][2] = 2 * (vector.y * vector.z - vector.w * vector.x);
-	tmp->mat[2][0] = 2 * (vector.x * vector.z - vector.w * vector.y);
-	tmp->mat[2][1] = 2 * (vector.w * vector.x + vector.y * vector.z);
-	tmp->mat[2][2] = 1 - 2 * (vector.x * vector.x + vector.y * vector.y);
+	tmp->mat[0] = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
+	tmp->mat[1] = 2 * (vector.x * vector.y - vector.w * vector.z);
+	tmp->mat[2] = 2 * (vector.w * vector.y + vector.x * vector.z);
+	tmp->mat[4] = 2 * (vector.x * vector.y + vector.w * vector.z);
+	tmp->mat[5] = 1 - 2 * (vector.x * vector.x + vector.z * vector.z);
+	tmp->mat[6] = 2 * (vector.y * vector.z - vector.w * vector.x);
+	tmp->mat[8] = 2 * (vector.x * vector.z - vector.w * vector.y);
+	tmp->mat[9] = 2 * (vector.w * vector.x + vector.y * vector.z);
+	tmp->mat[10] = 1 - 2 * (vector.x * vector.x + vector.y * vector.y);
 	res = matrix_mult(matrix, tmp);
 	matrix_free(tmp);
 	matrix_free(matrix);

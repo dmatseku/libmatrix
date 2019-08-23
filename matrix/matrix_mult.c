@@ -1,7 +1,7 @@
 #include <matrix.h>
 
-static inline float	mult(const size_t i, const size_t j,
-				t_matrix *const restrict matrix_1, t_matrix *const restrict matrix_2)
+static inline float	mult(const size_t i, t_matrix *const restrict matrix_1,
+					t_matrix *const restrict matrix_2)
 {
 	size_t	tmp1;
 	float	res;
@@ -10,7 +10,8 @@ static inline float	mult(const size_t i, const size_t j,
 	res = 0;
 	while (tmp1 < matrix_2->j)
 	{
-		res += (matrix_1->mat[i][tmp1] * matrix_2->mat[tmp1][j]);
+		res += (matrix_1->mat[i / matrix_2->j + tmp1]
+			  * matrix_2->mat[tmp1 * matrix_2->j + i % matrix_2->j]);
 		tmp1++;
 	}
 	return (res);
@@ -18,21 +19,16 @@ static inline float	mult(const size_t i, const size_t j,
 
 t_matrix*		matrix_mult(t_matrix *const restrict matrix_1, t_matrix *const restrict matrix_2)
 {
-	size_t						i;
-	size_t						j;
 	t_matrix *const restrict	res = matrix_create(matrix_1->i, matrix_2->j);
+	size_t						i;
+	const size_t				size = matrix_2->j * matrix_1->i;
 
 	if (!res)
 		return (0);
 	i = 0;
-	while (i < res->i)
+	while (i < size)
 	{
-		j = 0;
-		while (j < res->j)
-		{
-			res->mat[i][j] = mult(i, j, matrix_1, matrix_2);
-			j++;
-		}
+		res->mat[i] = mult(i, matrix_1, matrix_2);
 		i++;
 	}
 	return (res);

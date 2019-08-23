@@ -21,14 +21,14 @@ t_matrix*	m_yawpitchroll_new(const float yaw, const float pitch, const float rol
 
 	if (!res)
 		return (0);
-	res->mat[0][0] = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
-	res->mat[0][1] = 2 * (vector.x * vector.y - vector.w * vector.z);
-	res->mat[0][2] = 2 * (vector.w * vector.y + vector.x * vector.z);
-	res->mat[1][0] = 2 * (vector.x * vector.y + vector.w * vector.z);
-	res->mat[1][1] = 1 - 2 * (vector.x * vector.x + vector.z * vector.z);
-	res->mat[1][2] = 2 * (vector.y * vector.z - vector.w * vector.x);
-	res->mat[2][0] = 2 * (vector.x * vector.z - vector.w * vector.y);
-	res->mat[2][1] = 2 * (vector.w * vector.x + vector.y * vector.z);
-	res->mat[2][2] = 1 - 2 * (vector.x * vector.x + vector.y * vector.y);
+	res->mat[0] = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
+	res->mat[1] = 2 * (vector.x * vector.y - vector.w * vector.z);
+	res->mat[2] = 2 * (vector.w * vector.y + vector.x * vector.z);
+	res->mat[4] = 2 * (vector.x * vector.y + vector.w * vector.z);
+	res->mat[5] = 1 - 2 * (vector.x * vector.x + vector.z * vector.z);
+	res->mat[6] = 2 * (vector.y * vector.z - vector.w * vector.x);
+	res->mat[8] = 2 * (vector.x * vector.z - vector.w * vector.y);
+	res->mat[9] = 2 * (vector.w * vector.x + vector.y * vector.z);
+	res->mat[10] = 1 - 2 * (vector.x * vector.x + vector.y * vector.y);
 	return (res);
 }
