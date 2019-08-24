@@ -10,8 +10,8 @@ static inline float	mult(const size_t i, t_matrix *const restrict matrix_1,
 	res = 0;
 	while (tmp1 < matrix_2->j)
 	{
-		res += (matrix_1->mat[i / matrix_2->j + tmp1]
-			  * matrix_2->mat[tmp1 * matrix_2->j + i % matrix_2->j]);
+		res += (matrix_2->mat[matrix_2->j * (i / matrix_2->j) + tmp1]
+			  * matrix_1->mat[tmp1 * matrix_2->j + i % matrix_2->j]);
 		tmp1++;
 	}
 	return (res);

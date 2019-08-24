@@ -3,14 +3,18 @@
 void	matrix_print(t_matrix *const restrict matrix)
 {
 	size_t			i;
-	const size_t	size = matrix->j * matrix->i;
+	size_t			j;
 
 	i = 0;
-	while (i < size)
+	while (i < matrix->i)
 	{
-		if (i && !(i % matrix->j))
-			putchar('\n');
-		printf("%f   ", matrix->mat[i]);
+		j = 0;
+		while (j < matrix->j)
+		{
+			printf("%f   ", matrix->mat[j * matrix->i + i]);
+			j++;
+		}
+		putchar('\n');
 		i++;
 	}
 }
