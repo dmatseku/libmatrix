@@ -1,7 +1,7 @@
 #include <quaternion.h>
 #include <vector.h>
 
-t_vector*	quat_reverse_new(t_vector *const restrict quaternion)
+t_vector*	quat_reverse_new(t_vector const *const restrict quaternion)
 {
 	t_vector *const restrict	res = quat_conjugate_new(quaternion);
 

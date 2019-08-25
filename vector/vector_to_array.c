@@ -1,6 +1,6 @@
 #include <vector.h>
 
-float*	vector_to_array(t_vector *const restrict vector)
+float*	vector_to_array(t_vector const *const restrict vector)
 {
 	float *const restrict res = (float*)malloc(sizeof(float) * 4);
 

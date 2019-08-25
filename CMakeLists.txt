@@ -23,7 +23,7 @@ add_library(matrix STATIC
         vector/vector_sub_new.c		vector/vector_subscalar.c	vector/vector_vmult.c
         vector/vector_to_array.c
 
-        vector/vector_variable/vector_var_create.c      vector/vector_variable/vector_var_add.c
+        vector/vector_variable/vector_var_add.c
         vector/vector_variable/vector_var_sub.c         vector/vector_variable/vector_var_addscalar.c
         vector/vector_variable/vector_var_subscalar.c   vector/vector_variable/vector_var_divscalar.c
         vector/vector_variable/vector_var_multscalar.c  vector/vector_variable/vector_var_normal.c

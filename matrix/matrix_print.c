@@ -1,6 +1,6 @@
 #include <matrix.h>
 
-void	matrix_print(t_matrix *const restrict matrix)
+void	matrix_print(t_matrix const *const restrict matrix)
 {
 	size_t			i;
 	size_t			j;

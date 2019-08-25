@@ -1,6 +1,6 @@
 #include <operations_matrix_vector.h>
 
-static inline float	mult(const size_t i, t_matrix *const restrict m,
+static inline float	mult(const size_t i, t_matrix const *const restrict m,
 										t_vector const *const restrict v)
 {
 	return ((m->mat[i * m->j] * v->x) + (m->mat[i * m->j + 1] * v->y)
@@ -8,7 +8,7 @@ static inline float	mult(const size_t i, t_matrix *const restrict m,
 }
 
 void			mv_mult(t_vector *const restrict vector,
-											t_matrix *const restrict matrix)
+						t_matrix const *const restrict matrix)
 {
 	const t_vector	dtmp = *vector;
 

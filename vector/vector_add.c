@@ -1,6 +1,6 @@
 #include <vector.h>
 
-void 	vector_add(t_vector *const vector_1, t_vector *const vector_2)
+void 	vector_add(t_vector *const vector_1, t_vector const *const vector_2)
 {
 	vector_1->x += vector_2->x;
 	vector_1->y += vector_2->y;
