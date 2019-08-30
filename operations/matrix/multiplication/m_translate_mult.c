@@ -1,7 +1,7 @@
 #include <operations_matrix.h>
 #include <matrix.h>
 
-t_matrix*	m_translate(t_matrix *const restrict matrix, const t_vector translate)
+t_matrix*	m_translate_mult(t_matrix *const restrict matrix, const t_vector translate)
 {
 	t_matrix *restrict			res;
 	t_matrix *const restrict	tmp = matrix_create(4, 4);
