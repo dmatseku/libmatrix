@@ -7,14 +7,12 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Ofast")
 
 include_directories(includes)
 
-set(HEADER vector_var.h libmatrix.h vector.h matrix.h structs.h  quaternion.h quaternion_var.h operations_matrix_vector.h operations_matrix.h)
-
 add_library(matrix STATIC
         matrix/matrix_add.c			matrix/matrix_add_new.c 	matrix/matrix_addscalar.c
         matrix/matrix_cat.c 		matrix/matrix_cpy.c			matrix/matrix_create.c
         matrix/matrix_free.c		matrix/matrix_mult.c		matrix/matrix_multscalar.c
         matrix/matrix_print.c 		matrix/matrix_sub.c			matrix/matrix_sub_new.c
-        matrix/matrix_subscalar.c
+        matrix/matrix_subscalar.c   matrix/matrix_set_unit.c
 
         vector/vector_add.c			vector/vector_add_new.c		vector/vector_addscalar.c
         vector/vector_cat.c			vector/vector_cpy.c			vector/vector_create.c
@@ -23,12 +21,11 @@ add_library(matrix STATIC
         vector/vector_sub_new.c		vector/vector_subscalar.c	vector/vector_vmult.c
         vector/vector_to_array.c
 
-        vector/vector_variable/vector_var_add.c
+        vector/vector_variable/vector_var_add.c         vector/vector_variable/vector_var_vmult.c
         vector/vector_variable/vector_var_sub.c         vector/vector_variable/vector_var_addscalar.c
         vector/vector_variable/vector_var_subscalar.c   vector/vector_variable/vector_var_divscalar.c
         vector/vector_variable/vector_var_multscalar.c  vector/vector_variable/vector_var_normal.c
         vector/vector_variable/vector_var_rev.c         vector/vector_variable/vector_var_smult.c
-        vector/vector_variable/vector_var_vmult.c
 
         quaternion/quat_conjugate.c		quaternion/quat_norm.c      quaternion/quat_conjugate_new.c
         quaternion/quat_norm_nosqrt.c	quaternion/quat_reverse.c   quaternion/quat_reverse_new.c
@@ -40,9 +37,20 @@ add_library(matrix STATIC
         operations/matrix_vector/mv_mult.c
         operations/matrix_vector/mv_mult_new.c
 
-        operations/matrix/m_rotate.c        operations/matrix/m_scale.c
-        operations/matrix/m_translate.c     operations/matrix/m_yawpitchroll_new.c
-        operations/matrix/m_orthographic.c  operations/matrix/m_perspective.c
-        operations/matrix/m_camera.c        operations/matrix/m_yawpitchroll.c
-        operations/matrix/m_rotate_new.c    operations/matrix/m_scale_new.c
-        operations/matrix/m_translate_new.c includes/libmatrix_structs.h)
+        operations/matrix/new/m_yawpitchroll_new.c
+        operations/matrix/new/m_orthographic.c
+        operations/matrix/new/m_perspective.c
+        operations/matrix/new/m_camera.c
+        operations/matrix/new/m_rotate_new.c
+        operations/matrix/new/m_scale_new.c
+        operations/matrix/new/m_translate_new.c
+
+        operations/matrix/multiplication/m_rotate_mult.c
+        operations/matrix/multiplication/m_scale_mult.c
+        operations/matrix/multiplication/m_translate_mult.c
+        operations/matrix/multiplication/m_yawpitchroll_mult.c
+
+        operations/matrix/modify/m_rotate_modify.c
+        operations/matrix/modify/m_scale_modify.c
+        operations/matrix/modify/m_translate_modify.c
+        operations/matrix/modify/m_yawpitchroll_modify.c)

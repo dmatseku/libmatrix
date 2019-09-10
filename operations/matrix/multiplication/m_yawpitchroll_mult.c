@@ -3,8 +3,8 @@
 #include <math.h>
 #include <vector_var.h>
 
-t_matrix*	m_yawpitchroll(t_matrix *const restrict matrix, const float yaw,
-											const float pitch, const float roll)
+t_matrix*	m_yawpitchroll_mult(t_matrix *const restrict matrix, const float yaw,
+							const float pitch, const float roll)
 {
 	t_matrix *const restrict	tmp = matrix_create(4, 4);
 	t_matrix *restrict			res;

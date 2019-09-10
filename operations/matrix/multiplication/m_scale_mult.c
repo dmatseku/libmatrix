@@ -1,7 +1,7 @@
 #include <operations_matrix.h>
 #include <matrix.h>
 
-t_matrix*	m_scale(t_matrix *const restrict matrix, const t_vector scale)
+t_matrix*	m_scale_mult(t_matrix *const restrict matrix, const t_vector scale)
 {
 	t_matrix *restrict			res;
 	t_matrix *const restrict	tmp = matrix_create(4, 4);
@@ -16,4 +16,3 @@ t_matrix*	m_scale(t_matrix *const restrict matrix, const t_vector scale)
 	matrix_free(matrix);
 	return (res);
 }
-

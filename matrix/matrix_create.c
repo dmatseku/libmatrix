@@ -11,11 +11,6 @@ t_matrix*	matrix_create(size_t i, size_t j)
 		return (0);
 	res->i = i;
 	res->j = j;
-	i = 0;
-	while (i < size)
-	{
-		res->mat[i] = (i / j == i % j ? 1 : 0);
-		i++;
-	}
+	matrix_set_unit(res);
 	return (res);
 }

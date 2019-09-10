@@ -2,8 +2,8 @@
 #include <math.h>
 #include <matrix.h>
 
-t_matrix*	m_rotate(t_matrix *const restrict matrix,
-					const float degree, const t_vector rotate)
+t_matrix*	m_rotate_mult(t_matrix *const restrict matrix,
+					  const float degree, const t_vector rotate)
 {
 	t_matrix *restrict			res;
 	t_matrix *const restrict	tmp = matrix_create(4, 4);
