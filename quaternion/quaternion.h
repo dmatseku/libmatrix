@@ -1,20 +1,14 @@
 #ifndef QUATERNION_H
-# define QUATERNION_H
+#define QUATERNION_H
 
+#include <libmatrix_structs.h>
 
-# include <libmatrix_structs.h>
+t_vec4	quaternion_conjugate(t_vec4 quaternion);
 
+float	quaternion_norm(t_vec4 quaternion);
 
-void		quat_conjugate(t_vector* quaternion);
+float	quaternion_norm_nosqrt(t_vec4 quaternion);
 
-t_vector*	quat_conjugate_new(t_vector const * quaternion);
-
-float		quat_norm(t_vector const * quaternion);
-
-float		quat_norm_nosqrt(t_vector const * quaternion);
-
-void		quat_reverse(t_vector* quaternion);
-
-t_vector*	quat_reverse_new(t_vector const * quaternion);
+t_vec4	quaternion_reverse(t_vec4 quaternion);
 
 #endif

@@ -1,42 +1,67 @@
 #ifndef VECTOR_H
-# define VECTOR_H
+#define VECTOR_H
+#define vec4(x, y, z, w) (t_vec4){x, y, z, w}
+#define vec3(x, y, z) (t_vec3){x, y, z}
+#define vec2(x, y) (t_vec2){x, y}
 
-# include <math.h>
-# include <stdlib.h>
-# include <string.h>
-# include <libmatrix_structs.h>
+#include <libmatrix_structs.h>
+
+t_vec4	vec4_add(t_vec4 vector_1, t_vec4 vector_2);
+
+t_vec4	vec4_add_scalar(t_vec4 vector, float scalar);
+
+t_vec4	vec4_div_scalar(t_vec4 vector, float scalar);
+
+t_vec4	vec4_mult_scalar(t_vec4 vector, float scalar);
+
+t_vec4	vec4_normal(t_vec4 vector);
+
+t_vec4	vec4_rev(t_vec4 vector);
+
+float	vec4_scalar_mult(t_vec4 vector_1, t_vec4 vector_2);
+
+t_vec4	vec4_sub(t_vec4 vector_1, t_vec4 vector_2);
+
+t_vec4	vec4_sub_scalar(t_vec4 vector, float scalar);
 
 
-void		vector_add(t_vector* vector_1, t_vector const * vector_2);
+t_vec3	vec3_add(t_vec3 vector_1, t_vec3 vector_2);
 
-t_vector*	vector_add_new(t_vector const * vector_1, t_vector const * vector_2);
+t_vec3	vec3_add_scalar(t_vec3 vector, float scalar);
 
-void		vector_addscalar(t_vector* vector, float scalar);
+t_vec3	vec3_div_scalar(t_vec3 vector, float scalar);
 
-void		vector_cat(t_vector* vector_1, t_vector const * vector_2);
+t_vec3	vec3_mult_scalar(t_vec3 vector, float scalar);
 
-t_vector*	vector_cpy(t_vector const * vector);
+t_vec3	vec3_normal(t_vec3 vector);
 
-t_vector*	vector_create(float x, float y, float z, float w);
+t_vec3	vec3_rev(t_vec3 vector);
 
-void		vector_divscalar(t_vector* vector, float scalar);
+float	vec3_scalar_mult(t_vec3 vector_1, t_vec3 vector_2);
 
-void		vector_multscalar(t_vector* vector, float scalar);
+t_vec3	vec3_vector_mult(t_vec3 vector_1, t_vec3 vector_2);
 
-t_vector*	vector_normal(t_vector const * vector);
+t_vec3	vec3_sub(t_vec3 vector_1, t_vec3 vector_2);
 
-void		vector_rev(t_vector* vector);
+t_vec3	vec3_sub_scalar(t_vec3 vector, float scalar);
 
-float		vector_smult(t_vector const * vector_1, t_vector const * vector_2);
 
-void		vector_sub(t_vector* vector_1, t_vector const * vector_2);
+t_vec2	vec2_add(t_vec2 vector_1, t_vec2 vector_2);
 
-t_vector*	vector_sub_new(t_vector const * vector_1, t_vector const * vector_2);
+t_vec2	vec2_add_scalar(t_vec2 vector, float scalar);
 
-void		vector_subscalar(t_vector* vector, float scalar);
+t_vec2	vec2_div_scalar(t_vec2 vector, float scalar);
 
-float*		vector_to_array(t_vector const * vector);
+t_vec2	vec2_mult_scalar(t_vec2 vector, float scalar);
 
-t_vector*	vector_vmult(t_vector const * vector_1, t_vector const * vector_2);
+t_vec2	vec2_normal(t_vec2 vector);
+
+t_vec2	vec2_rev(t_vec2 vector);
+
+float	vec2_scalar_mult(t_vec2 vector_1, t_vec2 vector_2);
+
+t_vec2	vec2_sub(t_vec2 vector_1, t_vec2 vector_2);
+
+t_vec2	vec2_sub_scalar(t_vec2 vector, float scalar);
 
 #endif

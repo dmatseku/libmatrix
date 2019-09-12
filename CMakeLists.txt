@@ -8,49 +8,32 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Ofast")
 include_directories(includes)
 
 add_library(matrix STATIC
-        matrix/matrix_add.c			matrix/matrix_add_new.c 	matrix/matrix_addscalar.c
-        matrix/matrix_cat.c 		matrix/matrix_cpy.c			matrix/matrix_create.c
-        matrix/matrix_free.c		matrix/matrix_mult.c		matrix/matrix_multscalar.c
-        matrix/matrix_print.c 		matrix/matrix_sub.c			matrix/matrix_sub_new.c
-        matrix/matrix_subscalar.c   matrix/matrix_set_unit.c
+        matrix/mat4/mat4_init.c matrix/mat4/mat4_add.c          matrix/mat4/mat4_add_scalar.c
+        matrix/mat4/mat4_mult.c matrix/mat4/mat4_mult_scalar.c  matrix/mat4/mat4_print.c
+        matrix/mat4/mat4_sub.c  matrix/mat4/mat4_sub_scalar.c
 
-        vector/vector_add.c			vector/vector_add_new.c		vector/vector_addscalar.c
-        vector/vector_cat.c			vector/vector_cpy.c			vector/vector_create.c
-        vector/vector_divscalar.c	vector/vector_multscalar.c	vector/vector_normal.c
-        vector/vector_rev.c			vector/vector_smult.c		vector/vector_sub.c
-        vector/vector_sub_new.c		vector/vector_subscalar.c	vector/vector_vmult.c
-        vector/vector_to_array.c
+        vector/vec4/vec4_add.c          vector/vec4/vec4_add_scalar.c   vector/vec4/vec4_div_scalar.c
+        vector/vec4/vec4_mult_scalar.c  vector/vec4/vec4_normal.c       vector/vec4/vec4_rev.c
+        vector/vec4/vec4_scalar_mult.c  vector/vec4/vec4_sub.c          vector/vec4/vec4_sub_scalar.c
 
-        vector/vector_variable/vector_var_add.c         vector/vector_variable/vector_var_vmult.c
-        vector/vector_variable/vector_var_sub.c         vector/vector_variable/vector_var_addscalar.c
-        vector/vector_variable/vector_var_subscalar.c   vector/vector_variable/vector_var_divscalar.c
-        vector/vector_variable/vector_var_multscalar.c  vector/vector_variable/vector_var_normal.c
-        vector/vector_variable/vector_var_rev.c         vector/vector_variable/vector_var_smult.c
+        vector/vec3/vec3_add.c          vector/vec3/vec3_add_scalar.c   vector/vec3/vec3_div_scalar.c
+        vector/vec3/vec3_mult_scalar.c  vector/vec3/vec3_normal.c       vector/vec3/vec3_rev.c
+        vector/vec3/vec3_scalar_mult.c  vector/vec3/vec3_sub.c          vector/vec3/vec3_sub_scalar.c
+        vector/vec3/vec3_vector_mult.c
 
-        quaternion/quat_conjugate.c		quaternion/quat_norm.c      quaternion/quat_conjugate_new.c
-        quaternion/quat_norm_nosqrt.c	quaternion/quat_reverse.c   quaternion/quat_reverse_new.c
+        vector/vec2/vec2_add.c          vector/vec2/vec2_add_scalar.c   vector/vec2/vec2_div_scalar.c
+        vector/vec2/vec2_mult_scalar.c  vector/vec2/vec2_normal.c       vector/vec2/vec2_rev.c
+        vector/vec2/vec2_scalar_mult.c  vector/vec2/vec2_sub.c          vector/vec2/vec2_sub_scalar.c
 
-        quaternion/quaternion_variable/quat_var_conjugate.c quaternion/quaternion_variable/quat_var_reverse.c
-        quaternion/quaternion_variable/quat_var_norm.c      quaternion/quaternion_variable/quat_var_norm_nosqrt.c
+        quaternion/quaternion.h
+        quaternion/quaternion_conjugate.c
+        quaternion/quaternion_norm.c
+        quaternion/quaternion_norm_nosqrt.c
+        quaternion/quaternion_reverse.c
 
-        operations/matrix_vector/mv_mult_var.c
-        operations/matrix_vector/mv_mult.c
-        operations/matrix_vector/mv_mult_new.c
+        operations/matrix_vector/mat_vec_4_mult.c
 
-        operations/matrix/new/m_yawpitchroll_new.c
-        operations/matrix/new/m_orthographic.c
-        operations/matrix/new/m_perspective.c
-        operations/matrix/new/m_camera.c
-        operations/matrix/new/m_rotate_new.c
-        operations/matrix/new/m_scale_new.c
-        operations/matrix/new/m_translate_new.c
-
-        operations/matrix/multiplication/m_rotate_mult.c
-        operations/matrix/multiplication/m_scale_mult.c
-        operations/matrix/multiplication/m_translate_mult.c
-        operations/matrix/multiplication/m_yawpitchroll_mult.c
-
-        operations/matrix/modify/m_rotate_modify.c
-        operations/matrix/modify/m_scale_modify.c
-        operations/matrix/modify/m_translate_modify.c
-        operations/matrix/modify/m_yawpitchroll_modify.c matrix/matrix_mult_into_existing.c)
+        operations/matrix/mat4_camera.c         operations/matrix/mat4_orthographic.c
+        operations/matrix/mat4_perspective.c    operations/matrix/mat4_rotate.c
+        operations/matrix/mat4_scale.c          operations/matrix/mat4_translate.c
+        operations/matrix/mat4_yawpitchroll.c)

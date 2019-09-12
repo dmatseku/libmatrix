@@ -1,38 +1,22 @@
 #ifndef MATRIX_H
-# define MATRIX_H
+#define MATRIX_H
 
-# include <libmatrix_structs.h>
+#include <libmatrix_structs.h>
 
-void		matrix_add(t_matrix* matrix_1, t_matrix const * matrix_2);
+t_mat4	mat4_init(char unit);
 
-t_matrix*	matrix_add_new(t_matrix const * matrix_1, t_matrix const * matrix_2);
+t_mat4	mat4_add(t_mat4 matrix_1, t_mat4 matrix_2);
 
-void		matrix_addscalar(t_matrix* matrix, float scalar);
+t_mat4	mat4_add_scalar(t_mat4 matrix, float scalar);
 
-void		matrix_cat(t_matrix* matrix_1, t_matrix const * matrix_2);
+t_mat4	mat4_mult(t_mat4 matrix_1, t_mat4 matrix_2);
 
-t_matrix*	matrix_cpy(t_matrix const * matrix);
+t_mat4	mat4_mult_scalar(t_mat4 matrix, float scalar);
 
-t_matrix*	matrix_create(size_t i, size_t j);
+void	mat4_print(t_mat4 matrix);
 
-void		matrix_free(t_matrix* matrix);
+t_mat4	mat4_sub(t_mat4 matrix_1, t_mat4 matrix_2);
 
-t_matrix*	matrix_mult(t_matrix const * matrix_1, t_matrix const * matrix_2);
-
-void		matrix_mult_into_existing(t_matrix* res_matrix,
-									  t_matrix const * matrix_1,
-									  t_matrix const * matrix_2);
-
-void		matrix_multscalar(t_matrix* matrix, float scalar);
-
-void		matrix_print(t_matrix const * matrix);
-
-void		matrix_set_unit(t_matrix const * matrix);
-
-void		matrix_sub(t_matrix* matrix_1, t_matrix const * matrix_2);
-
-t_matrix*	matrix_sub_new(t_matrix const * matrix_1, t_matrix const * matrix_2);
-
-void		matrix_subscalar(t_matrix* matrix, float scalar);
+t_mat4	mat4_sub_scalar(t_mat4 matrix, float scalar);
 
 #endif
