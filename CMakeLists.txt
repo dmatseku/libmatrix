@@ -53,4 +53,4 @@ add_library(matrix STATIC
         operations/matrix/modify/m_rotate_modify.c
         operations/matrix/modify/m_scale_modify.c
         operations/matrix/modify/m_translate_modify.c
-        operations/matrix/modify/m_yawpitchroll_modify.c)
+        operations/matrix/modify/m_yawpitchroll_modify.c matrix/matrix_mult_into_existing.c)

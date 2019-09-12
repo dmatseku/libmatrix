@@ -19,6 +19,10 @@ void		matrix_free(t_matrix* matrix);
 
 t_matrix*	matrix_mult(t_matrix const * matrix_1, t_matrix const * matrix_2);
 
+void		matrix_mult_into_existing(t_matrix* res_matrix,
+									  t_matrix const * matrix_1,
+									  t_matrix const * matrix_2);
+
 void		matrix_multscalar(t_matrix* matrix, float scalar);
 
 void		matrix_print(t_matrix const * matrix);
