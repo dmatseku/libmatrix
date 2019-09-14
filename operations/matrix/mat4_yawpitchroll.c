@@ -23,7 +23,7 @@ t_mat4	mat4_yawpitchroll(const float yaw, const float pitch, const float roll)
 			ycos * pcos * rcos + ysin * psin * rsin
 	);
 
-	res = mat4_init(1);
+	res = mat4_init();
 	res.matrix[0] = 1 - 2 * (vector.y * vector.y + vector.z * vector.z);
 	res.matrix[4] = 2 * (vector.x * vector.y - vector.w * vector.z);
 	res.matrix[8] = 2 * (vector.w * vector.y + vector.x * vector.z);

@@ -12,7 +12,7 @@ t_mat4	mat4_rotate(const float degree, const t_vec3 rotate)
 	const float	dsin = sinf(degree);
 	const float	dcos = cosf(degree);
 
-	res = mat4_init(1);
+	res = mat4_init();
 	res.matrix[0] = dcos + (rotate.x * rotate.x) * (1 - dcos);
 	res.matrix[4] = rotate.x * rotate.y * (1 - dcos) - rotate.z * dsin;
 	res.matrix[8] = rotate.x * rotate.z * (1 - dcos) + rotate.y * dsin;

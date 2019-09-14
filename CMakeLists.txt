@@ -10,7 +10,7 @@ include_directories(includes)
 add_library(matrix STATIC
         matrix/mat4/mat4_init.c matrix/mat4/mat4_add.c          matrix/mat4/mat4_add_scalar.c
         matrix/mat4/mat4_mult.c matrix/mat4/mat4_mult_scalar.c  matrix/mat4/mat4_print.c
-        matrix/mat4/mat4_sub.c  matrix/mat4/mat4_sub_scalar.c
+        matrix/mat4/mat4_sub.c  matrix/mat4/mat4_sub_scalar.c   matrix/mat4/mat4_init_null.c
 
         vector/vec4/vec4_add.c          vector/vec4/vec4_add_scalar.c   vector/vec4/vec4_div_scalar.c
         vector/vec4/vec4_mult_scalar.c  vector/vec4/vec4_normal.c       vector/vec4/vec4_rev.c

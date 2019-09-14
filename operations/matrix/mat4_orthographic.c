@@ -9,7 +9,7 @@ t_mat4	mat4_orthographic(const float left, const float right, const float bottom
 {
 	t_mat4	res;
 
-	res = mat4_init(1);
+	res = mat4_init();
 	res.matrix[0] = 2.0f / (right - left);
 	res.matrix[5] =  2.0f / (top - bottom);
 	res.matrix[10] = -2.0f / (far - near);

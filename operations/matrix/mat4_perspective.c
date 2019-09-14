@@ -15,7 +15,7 @@ t_mat4	mat4_perspective(const float fov, const float ar,
 	const float	right = top	* ar;
 	t_mat4		res;
 
-	res = mat4_init(1);
+	res = mat4_init();
 	res.matrix[0] = 2.0f * near / (right - left);
 	res.matrix[5] = 2.0f * near / (top - bottom);
 	res.matrix[8] = (right + left) / (right - left);
