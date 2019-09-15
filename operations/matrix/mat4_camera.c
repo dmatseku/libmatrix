@@ -13,25 +13,23 @@ t_mat4	mat4_camera(const t_vec3 pos, const t_vec3 target, const t_vec3 up)
 	const t_vec3	cright = vec3_normal
 					(vec3_vector_mult(up, camdir));
 	const t_vec3	cup = vec3_vector_mult(camdir, cright);
-	t_mat4			matrix_1;
-	t_mat4			matrix_2;
+	t_mat4			matrix;
 
-	matrix_1 = mat4_init();
-	matrix_2 = mat4_init();
+	matrix = mat4_init();
 
-	matrix_1.matrix[0] = cright.x;
-	matrix_1.matrix[4] = cright.y;
-	matrix_1.matrix[8] = cright.z;
-	matrix_1.matrix[1] = cup.x;
-	matrix_1.matrix[5] = cup.y;
-	matrix_1.matrix[9] = cup.z;
-	matrix_1.matrix[2] = camdir.x;
-	matrix_1.matrix[6] = camdir.y;
-	matrix_1.matrix[10] = camdir.z;
+	matrix.matrix[0] = cright.x;
+	matrix.matrix[4] = cright.y;
+	matrix.matrix[8] = cright.z;
+	matrix.matrix[1] = cup.x;
+	matrix.matrix[5] = cup.y;
+	matrix.matrix[9] = cup.z;
+	matrix.matrix[2] = camdir.x;
+	matrix.matrix[6] = camdir.y;
+	matrix.matrix[10] = camdir.z;
 
-	matrix_2.matrix[12] = -pos.x;
-	matrix_2.matrix[13] = -pos.y;
-	matrix_2.matrix[14] = -pos.z;
+	matrix.matrix[12] = -pos.x * cright.x + -pos.y * cright.y + -pos.z * cright.z;
+	matrix.matrix[13] = -pos.x * cup.x + -pos.y * cup.y + -pos.z * cup.z;
+	matrix.matrix[14] = -pos.x * camdir.x + -pos.y * camdir.y + -pos.z * camdir.z;
 
-	return (mat4_mult(matrix_1, matrix_2));
+	return (matrix);
 }
