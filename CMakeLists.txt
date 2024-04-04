@@ -1,39 +1,58 @@
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.27)
+
 project(matrix C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 23)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Werror -Ofast")
 
-include_directories(includes)
 
-add_library(matrix STATIC
-        matrix/mat4/mat4_init.c matrix/mat4/mat4_add.c          matrix/mat4/mat4_add_scalar.c
-        matrix/mat4/mat4_mult.c matrix/mat4/mat4_mult_scalar.c  matrix/mat4/mat4_print.c
-        matrix/mat4/mat4_sub.c  matrix/mat4/mat4_sub_scalar.c   matrix/mat4/mat4_init_null.c
+set(GCC_GENERAL_COMPILER_FLAGS -Wall -Wextra -Werror -Wpedantic)
 
-        vector/vec4/vec4_add.c          vector/vec4/vec4_add_scalar.c   vector/vec4/vec4_div_scalar.c
-        vector/vec4/vec4_mult_scalar.c  vector/vec4/vec4_normal.c       vector/vec4/vec4_rev.c
-        vector/vec4/vec4_scalar_mult.c  vector/vec4/vec4_sub.c          vector/vec4/vec4_sub_scalar.c
+set(GCC_OPTIMIZATION_COMPILER_FLAGS -Ofast)
 
-        vector/vec3/vec3_add.c          vector/vec3/vec3_add_scalar.c   vector/vec3/vec3_div_scalar.c
-        vector/vec3/vec3_mult_scalar.c  vector/vec3/vec3_normal.c       vector/vec3/vec3_rev.c
-        vector/vec3/vec3_scalar_mult.c  vector/vec3/vec3_sub.c          vector/vec3/vec3_sub_scalar.c
-        vector/vec3/vec3_vector_mult.c
+set(GCC_COMPILER_IS_OPTIMIZED CACHE BOOL OFF)
 
-        vector/vec2/vec2_add.c          vector/vec2/vec2_add_scalar.c   vector/vec2/vec2_div_scalar.c
-        vector/vec2/vec2_mult_scalar.c  vector/vec2/vec2_normal.c       vector/vec2/vec2_rev.c
-        vector/vec2/vec2_scalar_mult.c  vector/vec2/vec2_sub.c          vector/vec2/vec2_sub_scalar.c
 
-        quaternion/quaternion.h
-        quaternion/quaternion_conjugate.c
-        quaternion/quaternion_norm.c
-        quaternion/quaternion_norm_nosqrt.c
-        quaternion/quaternion_reverse.c
 
-        operations/matrix_vector/mat_vec_4_mult.c
+set(SOURCE_DIR ./source)
 
-        operations/matrix/mat4_camera.c         operations/matrix/mat4_orthographic.c
-        operations/matrix/mat4_perspective.c    operations/matrix/mat4_rotate.c
-        operations/matrix/mat4_scale.c          operations/matrix/mat4_translate.c
-        operations/matrix/mat4_yawpitchroll.c)
+set(HEADERS_DIR includes)
+
+set(VEC_DIR ${SOURCE_DIR}/vector)
+
+set(MAT_DIR ${SOURCE_DIR}/matrix)
+
+set(QUAT_DIR ${SOURCE_DIR}/quaternion)
+
+set(SOURCES
+        ${VEC_DIR}/vec4.c
+        ${VEC_DIR}/vec3.c
+        ${VEC_DIR}/vec2.c
+        ${MAT_DIR}/mat2.c
+        ${MAT_DIR}/mat3.c
+        ${MAT_DIR}/mat4.c
+        ${QUAT_DIR}/quaternion.c
+        ${VEC_DIR}/vec4d.c
+        ${VEC_DIR}/vec3d.c
+        ${VEC_DIR}/vec2d.c
+        ${MAT_DIR}/mat2d.c
+        ${MAT_DIR}/mat3d.c
+        ${MAT_DIR}/mat4d.c
+        ${QUAT_DIR}/quaterniond.c
+)
+
+add_library(matrix STATIC ${SOURCES})
+
+target_include_directories(matrix PUBLIC ${HEADERS_DIR})
+
+target_link_libraries(matrix m)
+
+set_target_properties(matrix PROPERTIES PUBLIC_HEADER ${HEADERS_DIR}/libmatrix.h)
+
+if(GCC_COMPILER_IS_OPTIMIZED)
+    target_compile_options(matrix PRIVATE ${GCC_GENERAL_COMPILER_FLAGS} ${GCC_OPTIMIZATION_COMPILER_FLAGS})
+    message(STATUS "Optimization is enabled")
+else()
+    target_compile_options(matrix PRIVATE ${GCC_GENERAL_COMPILER_FLAGS})
+    message(STATUS "Optimization is disabled")
+endif()
