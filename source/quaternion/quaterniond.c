@@ -129,3 +129,40 @@ quaternion_rotate_hamilton_d(const t_quaternion *const quaternion, const t_vec4 
     *dest = quaternion_hamilton_product_qv(quaternion, vector);
     *dest = quaternion_hamilton_product_vq(dest, &conjugated);
 }
+
+inline static t_vec3
+quaternion_hamilton_product_qv3(const t_quaternion *const quaternion, const t_vec3 *const vector)
+{
+    return vec3
+    (
+        vector->x * quaternion->w + vector->y * quaternion->z - vector->z * quaternion->y,
+        -vector->x * quaternion->z + vector->y * quaternion->w + vector->z * quaternion->x,
+        vector->x * quaternion->y - vector->y * quaternion->x + vector->z * quaternion->w
+    );
+}
+
+inline static t_vec3
+quaternion_hamilton_product_vq3(const t_vec3 *const vector, const t_quaternion *const quaternion)
+{
+    return vec3
+    (
+        quaternion->w * vector->x + quaternion->y * vector->z - quaternion->z * vector->y,
+        quaternion->w * vector->y - quaternion->x * vector->z + quaternion->z * vector->x,
+        quaternion->w * vector->z + quaternion->x * vector->y - quaternion->y * vector->x
+    );
+}
+
+void
+quaternion_rotate_hamilton3_d(const t_quaternion *const quaternion, const t_vec3 *const vector, t_vec3 *const dest)
+{
+    t_quaternion conjugated = quaternion
+    (
+        -quaternion->x,
+        -quaternion->y,
+        -quaternion->z,
+        quaternion->w
+    );
+
+    *dest = quaternion_hamilton_product_qv3(quaternion, vector);
+    *dest = quaternion_hamilton_product_vq3(dest, &conjugated);
+}
