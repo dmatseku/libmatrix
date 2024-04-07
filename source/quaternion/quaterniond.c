@@ -1,4 +1,5 @@
 #include <quaternion.h>
+#include <conversion.h>
 #include <math.h>
 
 void
@@ -17,9 +18,13 @@ quaternion_mult_d(const t_quaternion *const quaternion_left, const t_quaternion 
 void
 quaternion_vec3_mult_d(const t_quaternion *const quaternion, const t_vec3 *const vector, t_vec3 *const restrict dest)
 {
-    t_mat4 trans = quaternion_to_matrix(quaternion);
-    t_vec4 vector4 = vec4(vector->x, vector->y, vector->z, 0);
-    t_vec4 result = mat4_trans(&trans, &vector4);
+    t_mat4 trans;
+    t_vec4 vector4;
+    t_vec4 result;
+
+    matrix_from_quaternion_d(quaternion, &trans);
+    vector4 = vec4(vector->x, vector->y, vector->z, 0);
+    result = mat4_trans(&trans, &vector4);
 
     dest->x = result.x;
     dest->y = result.y;
@@ -29,110 +34,11 @@ quaternion_vec3_mult_d(const t_quaternion *const quaternion, const t_vec3 *const
 void
 quaternion_vec4_mult_d(const t_quaternion *const quaternion, const t_vec4 *const vector, t_vec4 *const restrict dest)
 {
-    t_mat4 trans = quaternion_to_matrix(quaternion);
+    t_mat4 trans;
+
+    matrix_from_quaternion_d(quaternion, &trans);
 
     mat4_trans_d(&trans, vector, dest);
-}
-
-void
-quaternion_from_matrix_d(const t_mat4 *const matrix, t_quaternion *const dest)
-{
-    t_float sqr;
-    t_float tr = matrix->m00 + matrix->m11 + matrix->m22;
-    t_float max;
-
-    if (tr >= 0.0)
-    {
-        sqr = sqrt(tr + 1.0);
-        dest->w = sqr / 2;
-
-        sqr = 0.5 / sqr;
-        dest->x = (matrix->m21 - matrix->m12) * sqr;
-        dest->y = (matrix->m02 - matrix->m20) * sqr;
-        dest->z = (matrix->m10 - matrix->m01) * sqr;
-    }
-    else
-    {
-        max = fmax(fmax(matrix->m00, matrix->m11), matrix->m22);
-
-        if (max == matrix->m00)
-        {
-            sqr = sqrt(matrix->m00 - (matrix->m11 + matrix->m22) + 1.0);
-            dest->x = sqr / 2;
-
-            sqr = 0.5 / sqr;
-            dest->y = (matrix->m01 + matrix->m10) * sqr;
-            dest->z = (matrix->m20 + matrix->m02) * sqr;
-            dest->w = (matrix->m21 - matrix->m12) * sqr;
-        }
-        else if (max == matrix->m11)
-        {
-            sqr = sqrt(matrix->m11 - (matrix->m22 + matrix->m00) + 1.0);
-            dest->y = sqr / 2;
-
-            sqr = 0.5 / sqr;
-            dest->z = (matrix->m12 + matrix->m21) * sqr;
-            dest->x = (matrix->m01 + matrix->m10) * sqr;
-            dest->w = (matrix->m02 - matrix->m20) * sqr;
-        }
-        else
-        {
-            sqr = sqrt(matrix->m22 - (matrix->m00 + matrix->m11) + 1.0);
-            dest->z = sqr / 2;
-
-            sqr = 0.5 / sqr;
-            dest->x = (matrix->m20 + matrix->m02) * sqr;
-            dest->y = (matrix->m12 + matrix->m21) * sqr;
-            dest->w = (matrix->m10 - matrix->m01) * sqr;
-        }
-    }
-}
-
-void
-quaternion_from_euler_d(const t_vec3 *const euler, t_quaternion *const dest)
-{
-    t_float cy = cos(euler->yaw * 0.5);
-    t_float sy = sin(euler->yaw * 0.5);
-    t_float cp = cos(euler->pitch * 0.5);
-    t_float sp = sin(euler->pitch * 0.5);
-    t_float cr = cos(euler->roll * 0.5);
-    t_float sr = sin(euler->roll * 0.5);
-
-    dest->x = sr * cp * cy - cr * sp * sy;
-    dest->y = cr * sp * cy + sr * cp * sy;
-    dest->z = cr * cp * sy - sr * sp * cy;
-    dest->w = cr * cp * cy + sr * sp * sy;
-}
-
-void
-quaternion_to_matrix_d(const t_quaternion *const quaternion, t_mat4 *const dest)
-{
-    t_float xy = quaternion->x * quaternion->y;
-    t_float xz = quaternion->x * quaternion->z;
-    t_float xw = quaternion->x * quaternion->w;
-    t_float yz = quaternion->y * quaternion->z;
-    t_float yw = quaternion->y * quaternion->w;
-    t_float zw = quaternion->z * quaternion->w;
-    t_float sq_x = quaternion->x * quaternion->x;
-    t_float sq_y = quaternion->y * quaternion->y;
-    t_float sq_z = quaternion->z * quaternion->z;
-
-    dest->m00 = 1 - 2 * (sq_y + sq_z);
-    dest->m01 = 2 * (xy - zw);
-    dest->m02 = 2 * (xz + yw);
-    dest->m03 = 0;
-    dest->m10 = 2 * (xy + zw);
-    dest->m11 = 1 - 2 * (sq_x + sq_z);
-    dest->m12 = 2 * (yz - xw);
-    dest->m13 = 0;
-    dest->m20 = 2 * (xz - yw);
-    dest->m21 = 2 * (yz + zw);
-    dest->m22 = 1 - 2 * (sq_x + sq_y);
-    dest->m23 = 0;
-    dest->m30 = 0;
-    dest->m31 = 0;
-    dest->m32 = 0;
-    dest->m33 = 1;
 }
 
 void

@@ -22,14 +22,6 @@ t_vec3          quaternion_vec3_mult(const t_quaternion *quaternion, const t_vec
 
 t_vec4          quaternion_vec4_mult(const t_quaternion *quaternion, const t_vec4 *vector);
 
-t_quaternion    quaternion_from_axis(const t_vec3 *axis, t_float angle);
-
-t_quaternion    quaternion_from_euler(const t_vec3 *euler);
-
-t_quaternion    quaternion_from_matrix(const t_mat4 *matrix);
-
-t_mat4          quaternion_to_matrix(const t_quaternion *quaternion);
-
 t_quaternion    quaternion_slerp(const t_quaternion *quaternion_left, const t_quaternion *quaternion_right, t_float blend);
 
 t_quaternion    quaternion_look_rotation(const t_vec3 *forward, const t_vec3 *up);
@@ -49,12 +41,6 @@ void            quaternion_mult_d(const t_quaternion *quaternion_left, const t_q
 void            quaternion_vec3_mult_d(const t_quaternion *quaternion, const t_vec3 *vector, t_vec3 *restrict dest);
 
 void            quaternion_vec4_mult_d(const t_quaternion *quaternion, const t_vec4 *vector, t_vec4 *restrict dest);
-
-void            quaternion_from_matrix_d(const t_mat4 *matrix, t_quaternion *dest);
-
-void            quaternion_from_euler_d(const t_vec3 *euler, t_quaternion *dest);
-
-void            quaternion_to_matrix_d(const t_quaternion *quaternion, t_mat4 *dest);
 
 void            quaternion_slerp_d(const t_quaternion *quaternion_left, const t_quaternion *quaternion_right, t_float blend, t_quaternion *dest);
 

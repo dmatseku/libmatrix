@@ -24,6 +24,8 @@ set(MAT_DIR ${SOURCE_DIR}/matrix)
 
 set(QUAT_DIR ${SOURCE_DIR}/quaternion)
 
+set(CONVERT_DIR ${SOURCE_DIR}/conversion)
+
 set(SOURCES
         ${VEC_DIR}/vec4.c
         ${VEC_DIR}/vec3.c
@@ -39,6 +41,12 @@ set(SOURCES
         ${MAT_DIR}/mat3d.c
         ${MAT_DIR}/mat4d.c
         ${QUAT_DIR}/quaterniond.c
+        ${CONVERT_DIR}/to_matrix.c
+        ${CONVERT_DIR}/to_quaternion.c
+#        ${CONVERT_DIR}/to_vector.c
+        ${CONVERT_DIR}/to_matrix_d.c
+        ${CONVERT_DIR}/to_quaternion_d.c
+#        ${CONVERT_DIR}/to_vector_d.c
 )
 
 add_library(matrix STATIC ${SOURCES})

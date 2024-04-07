@@ -1,4 +1,5 @@
 #include <quaternion.h>
+#include <conversion.h>
 #include <math.h>
 
 t_float
@@ -30,7 +31,7 @@ quaternion_mult(const t_quaternion *const quaternion_left, const t_quaternion *c
 t_vec3
 quaternion_vec3_mult(const t_quaternion *quaternion, const t_vec3 *vector)
 {
-    t_mat4 trans = quaternion_to_matrix(quaternion);
+    t_mat4 trans = matrix_from_quaternion(quaternion);
     t_vec4 vector4 = vec4(vector->x, vector->y, vector->z, 0);
     t_vec4 result = mat4_trans(&trans, &vector4);
 
@@ -40,132 +41,9 @@ quaternion_vec3_mult(const t_quaternion *quaternion, const t_vec3 *vector)
 t_vec4
 quaternion_vec4_mult(const t_quaternion *const quaternion, const t_vec4 *const vector)
 {
-    t_mat4 trans = quaternion_to_matrix(quaternion);
+    t_mat4 trans = matrix_from_quaternion(quaternion);
 
     return mat4_trans(&trans, vector);
-}
-
-t_quaternion
-quaternion_from_axis(const t_vec3 *const axis, t_float angle)
-{
-    t_mat4          rotation = mat4;
-    t_quaternion    result;
-
-    mat4_rotate_self(&rotation, axis, angle);
-    result = quaternion_from_matrix(&rotation);
-    quaternion_normalize_self(&result);
-
-    return result;
-}
-
-t_quaternion
-quaternion_from_euler(const t_vec3 *const euler)
-{
-    t_float cy = cos(euler->yaw * 0.5);
-    t_float sy = sin(euler->yaw * 0.5);
-    t_float cp = cos(euler->pitch * 0.5);
-    t_float sp = sin(euler->pitch * 0.5);
-    t_float cr = cos(euler->roll * 0.5);
-    t_float sr = sin(euler->roll * 0.5);
-
-    return (t_quaternion)
-    {
-        sr * cp * cy - cr * sp * sy,
-        cr * sp * cy + sr * cp * sy,
-        cr * cp * sy - sr * sp * cy,
-        cr * cp * cy + sr * sp * sy
-    };
-}
-
-t_quaternion
-quaternion_from_matrix(const t_mat4 *const matrix)
-{
-    t_quaternion    result;
-    t_float         sqr;
-    t_float         tr = matrix->m00 + matrix->m11 + matrix->m22;
-    t_float         max;
-
-    if (tr >= 0.0)
-    {
-        sqr = sqrt(tr + 1.0);
-        result.w = sqr / 2;
-
-        sqr = 0.5 / sqr;
-        result.x = (matrix->m21 - matrix->m12) * sqr;
-        result.y = (matrix->m02 - matrix->m20) * sqr;
-        result.z = (matrix->m10 - matrix->m01) * sqr;
-    }
-    else
-    {
-        max = fmax(fmax(matrix->m00, matrix->m11), matrix->m22);
-
-        if (max == matrix->m00)
-        {
-            sqr = sqrt(matrix->m00 - (matrix->m11 + matrix->m22) + 1.0);
-            result.x = sqr / 2;
-
-            sqr = 0.5 / sqr;
-            result.y = (matrix->m01 + matrix->m10) * sqr;
-            result.z = (matrix->m20 + matrix->m02) * sqr;
-            result.w = (matrix->m21 - matrix->m12) * sqr;
-        }
-        else if (max == matrix->m11)
-        {
-            sqr = sqrt(matrix->m11 - (matrix->m22 + matrix->m00) + 1.0);
-            result.y = sqr / 2;
-
-            sqr = 0.5 / sqr;
-            result.z = (matrix->m12 + matrix->m21) * sqr;
-            result.x = (matrix->m01 + matrix->m10) * sqr;
-            result.w = (matrix->m02 - matrix->m20) * sqr;
-        }
-        else
-        {
-            sqr = sqrt(matrix->m22 - (matrix->m00 + matrix->m11) + 1.0);
-            result.z = sqr / 2;
-
-            sqr = 0.5 / sqr;
-            result.x = (matrix->m20 + matrix->m02) * sqr;
-            result.y = (matrix->m12 + matrix->m21) * sqr;
-            result.w = (matrix->m10 - matrix->m01) * sqr;
-        }
-    }
-
-    return result;
-}
-
-t_mat4
-quaternion_to_matrix(const t_quaternion *const quaternion)
-{
-    t_float xy = quaternion->x * quaternion->y;
-    t_float xz = quaternion->x * quaternion->z;
-    t_float xw = quaternion->x * quaternion->w;
-    t_float yz = quaternion->y * quaternion->z;
-    t_float yw = quaternion->y * quaternion->w;
-    t_float zw = quaternion->z * quaternion->w;
-    t_float sq_x = quaternion->x * quaternion->x;
-    t_float sq_y = quaternion->y * quaternion->y;
-    t_float sq_z = quaternion->z * quaternion->z;
-
-    return (t_mat4)
-    {
-        .m00 = 1 - 2 * (sq_y + sq_z),
-        .m01 = 2 * (xy - zw),
-        .m02 = 2 * (xz + yw),
-        .m03 = 0,
-        .m10 = 2 * (xy + zw),
-        .m11 = 1 - 2 * (sq_x + sq_z),
-        .m12 = 2 * (yz - xw),
-        .m13 = 0,
-        .m20 = 2 * (xz - yw),
-        .m21 = 2 * (yz + zw),
-        .m22 = 1 - 2 * (sq_x + sq_y),
-        .m23 = 0,
-        .m30 = 0,
-        .m31 = 0,
-        .m32 = 0,
-        .m33 = 1
-    };
 }
 
 t_quaternion
