@@ -1,7 +1,7 @@
 #include <conversion.h>
 
 t_mat4
-quaternion_to_matrix(const t_quaternion *const quaternion)
+matrix_from_quaternion(const t_quaternion *const quaternion)
 {
     t_float xy = quaternion->x * quaternion->y;
     t_float xz = quaternion->x * quaternion->z;
